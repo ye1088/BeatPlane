@@ -219,8 +219,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Award.cs" />
     <Compile Include="Assets\Script\BackgroundTransform.cs" />
     <Compile Include="Assets\Script\Bullet.cs" />
+    <Compile Include="Assets\Script\Enemy.cs" />
     <Compile Include="Assets\Script\Gun.cs" />
     <Compile Include="Assets\Script\hero.cs" />
   </ItemGroup>
