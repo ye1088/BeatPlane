@@ -23,6 +23,10 @@ public class Bullet : MonoBehaviour {
         if (isInAnimation)
         {
             this.transform.position = new Vector3(position.x,position.y + Time.deltaTime * moveSpeed,position.z);
+            if (this.transform.position.y > 4.1f)
+            {
+                Destroy(this.gameObject);
+            }
         }
 	}
 }

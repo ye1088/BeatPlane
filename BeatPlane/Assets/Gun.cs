@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour {
 
     public GameObject bullet;
 
-    public float fireRate = 0.2f;
+    public float fireRate = 0.3f;
 
     void fire()
     {
@@ -23,9 +23,11 @@ public class Gun : MonoBehaviour {
 	void Start () {
         openFire();
 	}
-	
+
+
+    
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 }
