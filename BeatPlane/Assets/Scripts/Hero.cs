@@ -17,9 +17,19 @@ public class Hero : MonoBehaviour {
     private int heroIndex = 0;
 
     private SpriteRenderer spriteRenderer;
+
+
+    private bool isMouseDown = false;
+
+    private Vector3 lastPostion;
+
+    private Vector3 mouseOfs = Vector3.zero;
+
+
 	// Use this for initialization
 	void Start () {
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        lastPostion = Vector3.zero;
 	}
 	
 	// Update is called once per frame
@@ -31,6 +41,32 @@ public class Hero : MonoBehaviour {
             animationCount =(int) ( totalTime / (1f / animationCountPersecond));
             heroIndex = animationCount % 2;
             spriteRenderer.sprite = sprites[heroIndex];
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                isMouseDown = true;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                isMouseDown = false;
+                lastPostion = Vector3.zero;
+            }
+
+            if (isMouseDown)
+            {
+                if (Vector3.zero == lastPostion)
+                {
+                    lastPostion = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                }
+                else
+                {
+                    mouseOfs = Camera.main.ScreenToWorldPoint(Input.mousePosition) - lastPostion;
+                    this.transform.position += mouseOfs;
+                    lastPostion = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    
+
+                }
+            }
         }
 	}
 }
