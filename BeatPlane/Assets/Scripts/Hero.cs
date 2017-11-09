@@ -63,10 +63,35 @@ public class Hero : MonoBehaviour {
                     mouseOfs = Camera.main.ScreenToWorldPoint(Input.mousePosition) - lastPostion;
                     this.transform.position += mouseOfs;
                     lastPostion = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    
 
+                    checkIsOutAndFix();
                 }
             }
         }
 	}
+
+    void checkIsOutAndFix()
+    {
+        if (this.transform.position.x < -2.1f)
+        {
+            this.transform.position = new Vector3(-2.1f,this.transform.position.y,this.transform.position.z);
+        }
+
+
+        if (this.transform.position.x > 2.1f)
+        {
+            this.transform.position = new Vector3(2.1f, this.transform.position.y, this.transform.position.z);
+        }
+
+
+        if (this.transform.position.y < -3.82f)
+        {
+            this.transform.position = new Vector3(this.transform.position.x, -3.82f, this.transform.position.z);
+        }
+
+        if (this.transform.position.y > 3.5f)
+        {
+            this.transform.position = new Vector3(this.transform.position.x, 3.5f, this.transform.position.z);
+        }
+    }
 }

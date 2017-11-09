@@ -29,4 +29,13 @@ public class Bullet : MonoBehaviour {
             }
         }
 	}
+
+    void OnTriggerEnter2d(Collider2D other){
+        Debug.Log(other.gameObject.tag);
+        if (other.gameObject.tag == "Enermy")
+        {
+            Debug.Log("hit enermy");
+        }
+    }
+   
 }
