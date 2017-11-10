@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1083159749493888, guid: 15cba785cde3ef041bbe2b2eb2c7b401, type: 2}
-  fireRate: 0.2
+  fireRate: 0.4
 --- !u!1 &386008585
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1500968745615468, guid: c9eac2d0e35e9444ab8b25313610118f, type: 2}
-  fireRate: 0.2
+  fireRate: 0.4
 --- !u!1 &589344230
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1083159749493888, guid: 15cba785cde3ef041bbe2b2eb2c7b401, type: 2}
-  fireRate: 0.2
+  fireRate: 0.4
 --- !u!1 &1935891932
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +538,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1935891932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.18, y: 3.57, z: 0}
+  m_LocalPosition: {x: 0.12, y: 0.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2004015274}

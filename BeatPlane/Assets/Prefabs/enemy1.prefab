@@ -81,6 +81,12 @@ MonoBehaviour:
   moveSpeed: 2
   hp: 2
   isInAnimation: 1
+  dieAnimationSprites:
+  - {fileID: 21300000, guid: 01fcc77cf50b4924388d0b6d0d0fff8d, type: 3}
+  - {fileID: 21300000, guid: 7cec92eb8d150bd43a7bf5900c00b5be, type: 3}
+  - {fileID: 21300000, guid: 94ece612fa3024c4388356aee30fb12f, type: 3}
+  - {fileID: 21300000, guid: a59ca1685d8a15a4e89238650e155e7a, type: 3}
+  enemyType: 1
 --- !u!212 &212727826470480796
 SpriteRenderer:
   m_ObjectHideFlags: 1

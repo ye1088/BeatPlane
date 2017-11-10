@@ -30,11 +30,11 @@ public class Bullet : MonoBehaviour {
         }
 	}
 
-    void OnTriggerEnter2d(Collider2D other){
-        Debug.Log(other.gameObject.tag);
+    void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.tag == "Enermy")
         {
-            Debug.Log("hit enermy");
+            other.SendMessage("beHit");
+            Destroy(this.gameObject);
         }
     }
    

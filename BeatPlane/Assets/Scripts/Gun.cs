@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour {
 
     public GameObject bullet;
 
-    public float fireRate = 0.3f;
+    public float fireRate = 0.4f;
 
     void fire()
     {

@@ -8,6 +8,20 @@ public class EnermyPlane : MonoBehaviour {
 
     public int hp = 1;
     public bool isInAnimation = true;
+
+    public Sprite[] dieAnimationSprites;
+
+    private float dieAnimationTime = 0.3f;
+    private float hasDiedTime = 0f;
+
+    public EnemyType enemyType = EnemyType.LITTLE;
+
+    public enum EnemyType
+    {
+        LITTLE,
+        MID,
+        BIG
+    }
      
     // Use this for initialization
     void Start () {
@@ -28,4 +42,31 @@ public class EnermyPlane : MonoBehaviour {
             }
         }
 	}
+
+    void beHit()
+    {
+        hp--;
+        if (hp <= 0)
+        {
+            toDie();
+            
+        }
+    }
+
+    private void toDie()
+    {
+        InvokeRepeating("dieAnimation", 0, Time.deltaTime);
+         
+    }
+
+    private void dieAnimation(){
+        hasDiedTime += Time.deltaTime;
+        int dieAnimationIndex = (int)(hasDiedTime / (dieAnimationTime / dieAnimationSprites.Length)) % dieAnimationSprites.Length;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = dieAnimationSprites[dieAnimationIndex];
+        if (hasDiedTime >= dieAnimationTime)
+        {
+            CancelInvoke("toDie");
+            Destroy(this.gameObject);
+        }
+    }
 }
