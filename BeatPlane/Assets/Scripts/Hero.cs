@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,14 @@ public class Hero : MonoBehaviour {
     public float totalTime = 0f;
 
     private int heroIndex = 0;
+
+    private float maxAwardStillTime = 5f;
+    private float currentAwardStillTime = 0f;
+
+
+    public Gun leftGun;
+    public Gun rightGun;
+    public Gun midGun;
 
     private SpriteRenderer spriteRenderer;
 
@@ -67,8 +76,39 @@ public class Hero : MonoBehaviour {
                     checkIsOutAndFix();
                 }
             }
+
+            if (currentAwardStillTime > 0)
+            {
+                currentAwardStillTime -= Time.deltaTime;
+                if (currentAwardStillTime == 0)
+                {
+                    currentAwardStillTime = -1;
+                }
+            }
+            else if (currentAwardStillTime < 0)
+            {
+
+                currentAwardStillTime = 0;
+                superGun(false);
+            }
         }
 	}
+
+    private void superGun(bool isIn)
+    {
+        if (isIn)
+        {
+            leftGun.openFire();
+            rightGun.openFire();
+            midGun.stopFire();
+        }
+        else
+        {
+            leftGun.stopFire();
+            rightGun.stopFire();
+            midGun.openFire();
+        }
+    }
 
     void checkIsOutAndFix()
     {
@@ -93,5 +133,46 @@ public class Hero : MonoBehaviour {
         {
             this.transform.position = new Vector3(this.transform.position.x, 3.5f, this.transform.position.z);
         }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        string tag = collision.tag;
+        switch (tag)
+        {
+            case "Enermy":
+                heroDied();
+                break;
+            case "Award":
+                getAward(collision);
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    private void getAward(Collider2D collision)
+    {
+        Award.AwardType awardType = collision.GetComponent<Award>().awardType;
+        Destroy(collision.gameObject);
+        switch (awardType)
+        {
+            case Award.AwardType.BULLET:
+                currentAwardStillTime = maxAwardStillTime;
+                superGun(true);
+                break;
+            case Award.AwardType.BOMB:
+                break;
+            default:
+                break;
+        }
+        
+    }
+
+    private void heroDied()
+    {
+        GameManager._instance.debugLog("Hero : heroDied");
     }
 }

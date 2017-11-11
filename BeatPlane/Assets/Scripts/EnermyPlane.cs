@@ -10,11 +10,14 @@ public class EnermyPlane : MonoBehaviour {
     public bool isInAnimation = true;
 
     public Sprite[] dieAnimationSprites;
+    public Sprite[] hitAnimationSprites;
 
     private float dieAnimationTime = 0.3f;
     private float hasDiedTime = 0f;
+    private bool hasBehit = false;
 
     public EnemyType enemyType = EnemyType.LITTLE;
+    public int score = 200;
 
     public enum EnemyType
     {
@@ -45,16 +48,29 @@ public class EnermyPlane : MonoBehaviour {
 
     void beHit()
     {
+
+        
         hp--;
         if (hp <= 0)
         {
             toDie();
+
+        }
+        else
+        {
+            if (!hasBehit)
+            {
+                hasBehit = true;
+                InvokeRepeating("hitAnimation", 0, Time.deltaTime);
+            }
             
         }
     }
 
     private void toDie()
     {
+
+        GameManager._instance.score += score;
         InvokeRepeating("dieAnimation", 0, Time.deltaTime);
          
     }
@@ -67,6 +83,24 @@ public class EnermyPlane : MonoBehaviour {
         {
             CancelInvoke("toDie");
             Destroy(this.gameObject);
+        }
+    }
+
+
+    private void hitAnimation()
+    {
+        if (hp > 0 )
+        {
+            try {
+
+                hasDiedTime += Time.deltaTime;
+                int hitAnimationIndex = (int)(hasDiedTime / (dieAnimationTime / hitAnimationSprites.Length)) % hitAnimationSprites.Length;
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = hitAnimationSprites[hitAnimationIndex];
+            }
+            catch
+            {
+                GameManager._instance.debugLog("EnermyPlane : hitAnimation error ,may be IndexOutofArrayException");
+            }
         }
     }
 }

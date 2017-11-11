@@ -7,9 +7,17 @@ public class Award : MonoBehaviour {
    
 
     private float moveSpeed = 4f;
+     
+    public enum AwardType
+    {
+        BULLET,
+        BOMB
+    }
 
-	// Use this for initialization
-	void Start () {
+    public AwardType awardType = AwardType.BULLET;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

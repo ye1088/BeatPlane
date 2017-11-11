@@ -14,9 +14,15 @@ public class Gun : MonoBehaviour {
             this.transform.position, Quaternion.identity);
     }
 
-    void openFire()
+
+    public void stopFire()
     {
-        InvokeRepeating("fire", 1, fireRate);
+        CancelInvoke("fire");
+    }
+
+    public void openFire()
+    {
+        InvokeRepeating("fire", 0, fireRate);
     }
 
 	// Use this for initialization

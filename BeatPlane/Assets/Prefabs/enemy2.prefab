@@ -88,7 +88,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 976decc5dc4bd464a9d878a74d524263, type: 3}
   - {fileID: 21300000, guid: bc0eb2ee0b43270428290f3d333e0a45, type: 3}
   - {fileID: 21300000, guid: 2e296b4f7bb6d4840aa790c06df847e5, type: 3}
+  hitAnimationSprites:
+  - {fileID: 21300000, guid: 34da37faa656b1644aed2440eeac2f9e, type: 3}
+  - {fileID: 21300000, guid: 17afaea3c7b9bca40967c608e3ce2778, type: 3}
+  - {fileID: 21300000, guid: b1dea9ec8dce0624aa7121e1dd8b92b9, type: 3}
   enemyType: 2
+  score: 800
 --- !u!212 &212630557006350828
 SpriteRenderer:
   m_ObjectHideFlags: 1
