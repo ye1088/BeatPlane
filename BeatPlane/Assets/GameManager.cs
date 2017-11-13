@@ -10,13 +10,25 @@ public class GameManager : MonoBehaviour {
     public int score = 0;
 
     private Text scoreGUI;
+    
 
 
     private void Awake()
     {
         scoreGUI = GameObject.FindGameObjectWithTag("ScoreGUI").GetComponent<Text>();
+        
     }
 
+
+    public void resumeGame()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void pauseGame()
+    {
+        Time.timeScale = 0;
+    }
     // Use this for initialization
     void Start () {
         _instance = this;

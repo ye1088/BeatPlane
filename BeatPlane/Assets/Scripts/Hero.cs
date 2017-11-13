@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hero : MonoBehaviour {
 
@@ -34,11 +35,23 @@ public class Hero : MonoBehaviour {
 
     private Vector3 mouseOfs = Vector3.zero;
 
+    private Text bombGUI;
+
+    private int bombNum = 0;
+
+    private Text historyHighScoreTxt;
+    private Text currentScoreTxt;
+
 
 	// Use this for initialization
 	void Start () {
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         lastPostion = Vector3.zero;
+        bombGUI = GameObject.FindGameObjectWithTag("BombNum").GetComponent<Text>();
+        historyHighScoreTxt = GameObject.FindGameObjectWithTag("HistoryHighScore").GetComponent<Text>();
+        currentScoreTxt = GameObject.FindGameObjectWithTag("CurrentScore").GetComponent<Text>();
+        historyHighScoreTxt.text = "";
+        currentScoreTxt.text = "";
 	}
 	
 	// Update is called once per frame
@@ -96,6 +109,11 @@ public class Hero : MonoBehaviour {
 
     private void superGun(bool isIn)
     {
+        if (currentAwardStillTime > 0 )
+        {
+            currentAwardStillTime = maxAwardStillTime;
+            return;
+        }
         if (isIn)
         {
             leftGun.openFire();
@@ -104,6 +122,7 @@ public class Hero : MonoBehaviour {
         }
         else
         {
+
             leftGun.stopFire();
             rightGun.stopFire();
             midGun.openFire();
@@ -142,6 +161,7 @@ public class Hero : MonoBehaviour {
         switch (tag)
         {
             case "Enermy":
+                collision.gameObject.SendMessage("toDie");
                 heroDied();
                 break;
             case "Award":
@@ -160,10 +180,13 @@ public class Hero : MonoBehaviour {
         switch (awardType)
         {
             case Award.AwardType.BULLET:
-                currentAwardStillTime = maxAwardStillTime;
+                
                 superGun(true);
+                currentAwardStillTime = maxAwardStillTime;
                 break;
             case Award.AwardType.BOMB:
+
+                addBomb();
                 break;
             default:
                 break;
@@ -171,8 +194,22 @@ public class Hero : MonoBehaviour {
         
     }
 
+
+    private void setBombTxt()
+    {
+        bombGUI.text = " X  "+bombNum;
+    }
+    private void addBomb()
+    {
+        bombNum++;
+        setBombTxt();
+    }
+
     private void heroDied()
     {
         GameManager._instance.debugLog("Hero : heroDied");
+        bombGUI.text = "";
+        GameOver._instance.gameOver(historyHighScoreTxt,currentScoreTxt);
+        Destroy(gameObject);
     }
 }

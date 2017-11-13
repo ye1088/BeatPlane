@@ -51,6 +51,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GameManager.cs" />
+     <Compile Include="Assets\GameOver.cs" />
+     <Compile Include="Assets\GamePause.cs" />
+     <Compile Include="Assets\QuitGame.cs" />
+     <Compile Include="Assets\RestartGame.cs" />
      <Compile Include="Assets\Scripts\Award.cs" />
      <Compile Include="Assets\Scripts\Background.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />

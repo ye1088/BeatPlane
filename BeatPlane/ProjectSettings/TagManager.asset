@@ -8,6 +8,9 @@ TagManager:
   - Bullet
   - Enermy
   - ScoreGUI
+  - BombNum
+  - HistoryHighScore
+  - CurrentScore
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Front
   - 
   - 
   - 

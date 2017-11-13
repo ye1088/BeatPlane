@@ -69,7 +69,7 @@ public class EnermyPlane : MonoBehaviour {
 
     private void toDie()
     {
-
+        CancelInvoke("hitAnimation");
         GameManager._instance.score += score;
         InvokeRepeating("dieAnimation", 0, Time.deltaTime);
          

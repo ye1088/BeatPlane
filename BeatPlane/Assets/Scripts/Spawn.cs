@@ -54,8 +54,9 @@ public class Spawn : MonoBehaviour {
         InvokeRepeating("createLittleEnermy", 1, Time.deltaTime * createRate);
         InvokeRepeating("createMidEnermy", 5, Time.deltaTime * createRate*4);
         InvokeRepeating("createBigEnermy", 10, Time.deltaTime * createRate * 8);
-        InvokeRepeating("createAwardBullet", 15, Time.deltaTime * createRate * 16);
-        InvokeRepeating("createAwardExplode", 20, Time.deltaTime * createRate * 20);
+        
+        InvokeRepeating("createAwardBullet", 10, Time.deltaTime * createRate * 4);
+        InvokeRepeating("createAwardExplode", 15, Time.deltaTime * createRate * 20);
     }
 	
 	// Update is called once per frame
