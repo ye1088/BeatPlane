@@ -11,6 +11,7 @@ TagManager:
   - BombNum
   - HistoryHighScore
   - CurrentScore
+  - Bomb
   layers:
   - Default
   - TransparentFX

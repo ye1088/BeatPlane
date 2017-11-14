@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour {
     public int score = 0;
 
     private Text scoreGUI;
+
+    public bool heroDied = false;
+    public bool isUseBomb = false;
+     
     
 
 

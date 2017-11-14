@@ -26,6 +26,8 @@ public class Hero : MonoBehaviour {
     public Gun rightGun;
     public Gun midGun;
 
+    public AudioSource mAudio;
+
     private SpriteRenderer spriteRenderer;
 
 
@@ -35,23 +37,23 @@ public class Hero : MonoBehaviour {
 
     private Vector3 mouseOfs = Vector3.zero;
 
-    private Text bombGUI;
-
-    private int bombNum = 0;
 
     private Text historyHighScoreTxt;
     private Text currentScoreTxt;
+
+    private AudioClip clip;
 
 
 	// Use this for initialization
 	void Start () {
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         lastPostion = Vector3.zero;
-        bombGUI = GameObject.FindGameObjectWithTag("BombNum").GetComponent<Text>();
+        
         historyHighScoreTxt = GameObject.FindGameObjectWithTag("HistoryHighScore").GetComponent<Text>();
         currentScoreTxt = GameObject.FindGameObjectWithTag("CurrentScore").GetComponent<Text>();
         historyHighScoreTxt.text = "";
         currentScoreTxt.text = "";
+        mAudio = this.gameObject.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -185,8 +187,7 @@ public class Hero : MonoBehaviour {
                 currentAwardStillTime = maxAwardStillTime;
                 break;
             case Award.AwardType.BOMB:
-
-                addBomb();
+                GameObject.FindGameObjectWithTag("Bomb").SendMessage("addBomb");
                 break;
             default:
                 break;
@@ -195,20 +196,15 @@ public class Hero : MonoBehaviour {
     }
 
 
-    private void setBombTxt()
-    {
-        bombGUI.text = " X  "+bombNum;
-    }
-    private void addBomb()
-    {
-        bombNum++;
-        setBombTxt();
-    }
 
     private void heroDied()
     {
+        mAudio.clip = (AudioClip)Resources.Load("Assets/sound/game_over", typeof(AudioClip));
+        mAudio.Play();
+        
+        GameManager._instance.heroDied = true;
         GameManager._instance.debugLog("Hero : heroDied");
-        bombGUI.text = "";
+        
         GameOver._instance.gameOver(historyHighScoreTxt,currentScoreTxt);
         Destroy(gameObject);
     }

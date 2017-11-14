@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Bullet : MonoBehaviour {
 
 
@@ -11,9 +12,14 @@ public class Bullet : MonoBehaviour {
 
     private Vector3 position;
 
+    private AudioSource mAudio;
+
+
 	// Use this for initialization
 	void Start () {
-		
+        mAudio = this.GetComponent<AudioSource>();
+        mAudio.Play();
+         
 	}
 	
 	// Update is called once per frame

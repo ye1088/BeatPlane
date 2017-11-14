@@ -7,6 +7,8 @@ public class Award : MonoBehaviour {
    
 
     private float moveSpeed = 4f;
+    public AudioClip clip;
+    private AudioSource mAudio;
      
     public enum AwardType
     {
@@ -18,7 +20,8 @@ public class Award : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        mAudio.clip = clip;
+        mAudio.Play();
 	}
 	
 	// Update is called once per frame
